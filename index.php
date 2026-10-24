@@ -66,12 +66,12 @@ require("./read.php");
 <body>
 
     <div class="main-container">
-        <div class="input-field">
+        <form class="input-field" method="post" action="/php-crud/create.php">
             <h1>create user</h1>
             <input type="text" required name="username" placeholder="Enter your username">
             <input type="text" required name="password" placeholder="Enter your password">
             <input type="submit" name="create" value="Create">
-        </div>
+        </form>
 
         <table>
             <thead>
@@ -89,11 +89,15 @@ require("./read.php");
                         <td><?php echo $result['username'] ?></td>
                         <td><?php echo $result['password'] ?></td>
                         <td class="button-field">
-                            <form action="#" method="get">
+                            <form action="/php-crud/update.php" method="post">
                                 <input type="submit" name="edit" value="EDIT">
+                                <input type="hidden" name="editId" value="<?php echo $result['id'] ?>">
+                                <input type="hidden" name="editUsername" value="<?php echo $result['username'] ?>">
+                                <input type="hidden" name="editPassword" value="<?php echo $result['password'] ?>">
                             </form>
-                            <form action="#" method="get">
+                            <form action="/php-crud/delete.php" method="post">
                                 <input type="submit" name="delete" value="DELETE">
+                                <input type="hidden" name="deleteId" value="<?php echo $result['id'] ?>">
                             </form>
                         </td>
                     </tr>
